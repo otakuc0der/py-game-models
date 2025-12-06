@@ -13,8 +13,11 @@ def main() -> None:
         email = player_desc_dict.get("email")
         bio = player_desc_dict.get("bio")
 
-        race_obj = None
         race_data = player_desc_dict.get("race")
+        if not race_data:
+            raise ValueError(
+                f"Player {nickname} has no race in input data"
+            )
         if race_data:
             race_name = race_data.get("name")
             race_desc = race_data.get("description")
@@ -35,7 +38,7 @@ def main() -> None:
                         name=skill_name,
                         defaults={
                             "bonus": skill_bonus,
-                            "race": race_obj,
+                            "race": race_obj ,
                         },
                     )
 
